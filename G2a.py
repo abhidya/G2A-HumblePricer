@@ -4,19 +4,12 @@ import useragents
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
 print("Starting Session")
-
-
 c = Session()
 c.verify = False
-
-
 browser = RoboBrowser(session=c, user_agent=useragents.random(), parser="html.parser")
-
 humblebundle_link = input("Paste your humblebundle link here: ")
 total = 0
-
 browser.open(humblebundle_link)
 games = browser.find_all("div", {"class": """dd-image-box-caption dd-image-box-text dd-image-box-white """})
 with open('G2A_Save.txt', 'a') as file:
@@ -39,11 +32,8 @@ for game in games:
         print(response + " : " + results+ '\n')
     except AttributeError:
         print(response + " : Doesn't exist on G2A")
-
 print('\n'+'\n'+ "TOTAL VALUE IF SOLD  " + str(total)  )
-
 with open('G2A_Save.txt', 'a') as file:
     file.write('\n'+'\n'+ "TOTAL VALUE IF SOLD  " + str(total) + "------------------------------------" + '\n'+'\n')
     file.close()
-
 pres = input("Press any button to exit")
